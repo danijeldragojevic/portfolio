@@ -33,4 +33,18 @@ public class HomePageTest extends BaseTest {
         assertTrue(homePage.isGithubLinkPresent(), "GitHub link should be present");
         assertTrue(homePage.isLinkedinLinkPresent(), "LinkedIn link should be present");
     }
+
+    @Test
+    public void testRepoLink() {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo(System.getProperty("app.url", "http://web:8080"));
+        
+        assertTrue(homePage.isRepoLinkPresent(), 
+            "GitHub repository link should be present");
+        
+        // Test responsive text (adjust window size first if needed)
+        String linkText = homePage.getRepoLinkText();
+        assertTrue(linkText.contains("GitHub"), 
+            "Link should contain 'GitHub' text");
+    }
 } 

@@ -31,6 +31,9 @@ public class HomePage {
     @FindBy(css = "a[href='https://www.linkedin.com/in/danijel-dragojevic-71636a239/']")
     private WebElement linkedinLink;
 
+    @FindBy(css = "header a[href='https://github.com/danijeldragojevic/portfolio']")
+    private WebElement repoLink;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -64,5 +67,13 @@ public class HomePage {
 
     public int getNavigationLinksCount() {
         return navigationLinks.size();
+    }
+
+    public String getRepoLinkText() {
+        return wait.until(ExpectedConditions.visibilityOf(repoLink)).getText();
+    }
+
+    public boolean isRepoLinkPresent() {
+        return wait.until(ExpectedConditions.visibilityOf(repoLink)).isDisplayed();
     }
 } 

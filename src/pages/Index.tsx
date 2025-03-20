@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { toast } from "sonner";
 import { ArrowDown, X } from "lucide-react";
+import Header from "@/components/Header";
 
 const Index = () => {
   useEffect(() => {
@@ -70,23 +71,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-darkBg text-darkText">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section id="home" className="h-screen relative flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-darkBg to-darkCard -z-10"></div>
-        <div className="absolute inset-0 overflow-hidden -z-20">
-          <div className="absolute -inset-[10%] opacity-30">
-            {/* Animation pattern */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-highlight/20 rounded-full filter blur-[100px] animate-pulse"></div>
-            <div
-              className="absolute top-1/3 right-1/4 w-64 h-64 bg-highlight/10 rounded-full filter blur-[80px] animate-pulse"
-              style={{ animationDelay: "1s" }}
-            ></div>
-          </div>
-        </div>
-
+    <div className="relative">
+      <Header />
+      <main className="pt-16 relative z-[1]">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <p
@@ -140,7 +127,7 @@ const Index = () => {
           <span className="text-sm mb-2">Scroll Down</span>
           <ArrowDown size={20} />
         </a>
-      </section>
+      </main>
 
       <About />
       <Experience />
