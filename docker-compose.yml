@@ -4,13 +4,48 @@ services:
   web:
     build: .
     ports:
-      # Maps port 8080 from container to host
       - "8080:8080"
     volumes:
-      # Mount the source code for hot reloading
       - .:/app
-      # Exclude node_modules from the mount (uses container's node_modules)
       - /app/node_modules
     environment:
-      # Required for Vite's HMR to work properly in Docker
       - VITE_HOST=0.0.0.0
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:8080', (r) => r.statusCode !== 200 ? process.exit(1) : process.exit(0))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: "2gb"
+    ports:
+      - "4444:4444"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./src/test:/app/src/test
+      - ./pom.xml:/app/pom.xml
+    environment:
+      - SELENIUM_HUB_URL=http://selenium:4444
+      - APP_URL=http://web:8080
+    depends_on:
+      web:
+        condition: service_healthy
+      selenium:
+        condition: service_healthy
