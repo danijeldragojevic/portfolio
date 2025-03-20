@@ -105,23 +105,6 @@ The test suite is organized following the Page Object Model pattern:
 
 You can deploy this project using any static hosting service like Netlify, Vercel, or GitHub Pages.
 
-## Project Structure
-
-```
-portfolio-tests/
-├── src/
-│ └── test/
-│ └── java/
-│ └── com/
-│ └── portfolio/
-│ └── tests/
-│ ├── pages/ # Page Object classes
-│ │ └── HomePage.java
-│ ├── BaseTest.java
-│ └── HomePageTest.java
-└── pom.xml
-```
-
 ### Running Tests Locally
 
 To run tests without Docker:
