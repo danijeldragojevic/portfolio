@@ -73,60 +73,93 @@ const Index = () => {
   return (
     <div className="relative">
       <Header />
-      <main className="pt-16 relative z-[1]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p
-              className="text-highlight tracking-wider uppercase text-sm mb-2 animate-fade-in opacity-0"
-              style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
-            >
-              QA Automation Engineer
-            </p>
-
-            <h1
-              className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in opacity-0"
-              style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
-            >
-              Hi, I'm <span className="text-highlight">Danijel Dragojevic</span>
-            </h1>
-
-            <p
-              className="text-xl text-darkSubtle mb-8 leading-relaxed animate-fade-in opacity-0"
-              style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
-            >
-              Specializing in automated testing solutions with Selenium and Java
-              to ensure exceptional software quality
-            </p>
-
-            <div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in opacity-0"
-              style={{ animationDelay: "0.8s", animationFillMode: "forwards" }}
-            >
-              <a
-                href="#contact"
-                className="px-8 py-3 bg-highlight text-darkBg font-medium rounded-lg hover:bg-highlight/90 transition-colors"
+      <main className="min-h-screen">
+        {/* Hero section - increase top padding to account for header */}
+        <section className="min-h-screen pt-32 pb-20 flex items-center relative">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <p
+                className="text-highlight tracking-wider uppercase text-sm mb-2 animate-fade-in opacity-0"
+                style={{
+                  animationDelay: "0.2s",
+                  animationFillMode: "forwards",
+                }}
               >
-                Contact Me
-              </a>
+                QA Automation Engineer
+              </p>
 
-              <a
-                href="#about"
-                className="px-8 py-3 border border-white/10 text-darkText rounded-lg hover:border-highlight/50 transition-colors"
+              <h1
+                className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in opacity-0"
+                style={{
+                  animationDelay: "0.4s",
+                  animationFillMode: "forwards",
+                }}
               >
-                Learn More
-              </a>
+                Hi, I'm{" "}
+                <span className="text-highlight">Danijel Dragojevic</span>
+              </h1>
+
+              <p
+                className="text-xl text-darkSubtle mb-8 leading-relaxed animate-fade-in opacity-0"
+                style={{
+                  animationDelay: "0.6s",
+                  animationFillMode: "forwards",
+                }}
+              >
+                Specializing in automated testing solutions with Selenium and
+                Java to ensure exceptional software quality
+              </p>
+
+              <div
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in opacity-0"
+                style={{
+                  animationDelay: "0.8s",
+                  animationFillMode: "forwards",
+                }}
+              >
+                <a
+                  href="#contact"
+                  className="px-8 py-3 bg-highlight text-darkBg font-medium rounded-lg hover:bg-highlight/90 transition-colors"
+                >
+                  Contact Me
+                </a>
+
+                <a
+                  href="#about"
+                  className="px-8 py-3 border border-white/10 text-darkText rounded-lg hover:border-highlight/50 transition-colors"
+                >
+                  Learn More
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <a
-          href="#about"
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-darkSubtle hover:text-highlight transition-colors animate-bounce"
-          style={{ animationDuration: "2s" }}
-        >
-          <span className="text-sm mb-2">Scroll Down</span>
-          <ArrowDown size={20} />
-        </a>
+          {/* Scroll down indicator - position at bottom of viewport */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a
+              href="#about"
+              className="flex flex-col items-center text-darkSubtle hover:text-highlight transition-colors"
+            >
+              <span className="text-sm mb-2">Scroll Down</span>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        {/* Rest of your content sections */}
       </main>
 
       <About />
