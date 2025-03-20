@@ -22,18 +22,15 @@ jobs:
           # Wait for services to be healthy
           timeout 60s bash -c 'until docker compose ps | grep -q "healthy"; do sleep 1; done'
 
-      - name: Run Tests and Copy Results
+      - name: Create Target Directory
+        run: mkdir -p target
+
+      - name: Run Tests
         run: |
-          # Create target directory
-          mkdir -p target
-
-          # Run tests
-          docker compose run --rm tests mvn test -Dsurefire.useFile=false
-
-          # Copy test results from container to host
-          container_id=$(docker compose ps -q tests)
-          docker cp $container_id:/app/target/surefire-reports ./target/
-          docker cp $container_id:/app/target/site ./target/
+          # Run tests and mount the target directory to capture results directly
+          docker compose run --rm \
+            -v "$(pwd)/target:/app/target" \
+            tests mvn test -Dsurefire.useFile=false
 
       - name: Upload Test Results
         if: always()
